@@ -1,0 +1,9 @@
+<div class="" style="margin:0; padding:0;">
+  <h2 style="margin: 0; padding: 0;">Articles about <%= @category.name %></h2>
+  <p><%= @category.description %></p>
+</div>
+
+<% if @category.articles %>
+  <% @articles = @category.articles %>
+  <%= render 'articles/articles_partial', articles: @articles %>
+<% end %>

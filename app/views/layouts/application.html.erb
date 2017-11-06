@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>wikiclone</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="row"> <!-- CONTAINER FOR ENTIRE LAYOUT -->
+
+      <div class="col-md-2" id="mw-panel"> <!-- LEFT COLUMN ONLY (2/12 WIDTH) -->
+        <%= render partial: 'shared/left_sidebar' %>
+      </div>
+
+      <div id="mainContainer" class="col-md-10"> <!-- MIDDLE COLUMNS ONLY (10/12 WIDTH) -->
+
+        <%= render partial: 'shared/nav' %>
+
+        <div class="row"> <!-- FLASH NOTICE -->
+          <%= render partial: 'shared/flash' %>
+        </div>
+
+        <div id="mw-body" class="row">
+
+          <!-- YIELD (HERE IS WHERE EACH VIEW ERB FROM CONTROLLERS/VIEWS WILL RENDER) -->
+          <div class="row" id="main-wrapper">
+            <%= yield %>
+          </div>
+
+        </div>
+
+      </div>
+
+      <footer id="footer">
+      </footer>
+
+    </div>
+
+  </body>
+</html>

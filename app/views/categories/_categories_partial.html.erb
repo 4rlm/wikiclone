@@ -1,0 +1,27 @@
+<div class="central-wrapper">
+  <div class="row text-center">
+    <h1 class="wiki-font">WIKICLONE</h1>
+    <p class="wiki-font">THE FREE ENCYCLOPEDIA</p>
+  </div>
+
+  <div class="row logo-div text-center">
+    <%= link_to image_tag("wiki_logo.png", size: "200x200", alt: "wikiclone Logo"), root_url %>
+  </div>
+
+  <div class="row central-featured-category text-center">
+    <% @categories.each do |category| %>
+
+    <h4 id="category-link-title" class="link-box"><%= link_to "#{category.name.capitalize}", category, remote: true %></h4>
+
+    <%end%>
+
+  </div>
+
+  <!-- SEARCH ARTICLES FORM -->
+  <%#= render "articles/search_form" %>
+
+  <div class='row form-group text-center'>
+    <%= render partial: 'articles/search_partial' %>
+  </div>
+
+</div>

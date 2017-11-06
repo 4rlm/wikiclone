@@ -1,0 +1,51 @@
+<%= simple_form_for @article, local: true do |form| %>
+
+    <% if @article.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@article.errors.count, "error") %>
+            prohibited this article from being saved:
+        </h2>
+        <ul>
+          <% @article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <p>
+      <%= form.input :title %>
+    </p>
+
+    <p>
+      <%= form.input :summary %>
+    </p>
+
+    <p>
+      <%= form.input :body, :as => :ckeditor, input_html: {:ckeditor => {:toolbar => 'FULL'}} %>
+    </p>
+
+      <p>
+      <%= form.label :tag_list, "Tags (separated by commas)" %><br />
+      <%= form.text_field :tag_list %>
+     </p>
+
+    <p>
+      <%#= form.input :categories, collection: Category.all, input_html: { multiple: true }, :selected => [''] %>
+      <%= form.input :article_category_ids, collection: Category.all, input_html: { multiple: true }, include_hidden: false %>
+    </p>
+
+    <% if @current_user %>
+      <%= form.hidden_field :user_id, :value => @current_user.id %>
+    <% else %>
+    <p>
+      <%= form.input :user_id %>
+    </p>
+    <% end %>
+
+    <p>
+      <%= form.submit %>
+    </p>
+
+  <% end %>
